@@ -29,11 +29,15 @@ export default class CreateUserService {
         const uid = await this.uidProvider.uidGenerate() + String(Date.now());
         const hashedPassword = await this.encodeProvider.encode(data.password);
 
-        return await this.userRepository.create({
-            ...data,
-            id: uid,
-            password: hashedPassword
-        });
+        try {
+            return await this.userRepository.create({
+                ...data,
+                id: uid,
+                password: hashedPassword
+            });
+        } catch (e) {
+            throw new Error('User already exist');
+        }
 
     }
 
