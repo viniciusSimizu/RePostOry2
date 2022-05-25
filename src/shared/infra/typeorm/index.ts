@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import database from '../../../config/database';
 import {DataSource} from "typeorm";
 import {resolve} from 'path';
@@ -12,7 +13,7 @@ const dataSource = new DataSource({
     username: cfg_database.DB_USERNAME,
     password: cfg_database.DB_PASSWORD,
     database: cfg_database.DB_REFERENCE,
-    synchronize: true,
+    synchronize: false,
     logger: 'file',
     entities: [
         resolve(__dirname, 'entities/*.{ts,js}'),

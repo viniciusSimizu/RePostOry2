@@ -16,7 +16,7 @@ authRoutes.post(
     CreateUserController.handle
 )
 
-authRoutes.post(
+authRoutes.patch(
     '/login',
     [ celebrate({ [Segments.BODY]: loginUserSchema }, { abortEarly: false }) ],
     loginUserController.handle

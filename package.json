@@ -1,6 +1,8 @@
 {
   "scripts": {
     "dev": "nodemon src/shared/infra/http/server.ts",
+    "run:migration": "ts-node-dev node_modules/typeorm/cli.js migration:run -d src/shared/infra/typeorm",
+    "show:migration": "ts-node-dev node_modules/typeorm/cli.js migration:show -d src/shared/infra/typeorm",
     "test": "jest"
   },
   "devDependencies": {

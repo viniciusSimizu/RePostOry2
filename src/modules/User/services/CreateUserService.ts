@@ -36,6 +36,7 @@ export default class CreateUserService {
                 password: hashedPassword
             });
         } catch (e) {
+            console.log(e)
             throw new Error('User already exist');
         }
 

@@ -12,7 +12,7 @@
     <li>
         - Repository
         <ul style="list-style: none;">
-            <li>Get: /repository/get</li>
+            <li>Post: /repository/get</li>
         </ul>
     </li>
 </ul>
