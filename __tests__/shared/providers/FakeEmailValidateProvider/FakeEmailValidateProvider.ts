@@ -1,12 +1,11 @@
 import {IEmailValidateProvider} from "../../../../src/shared/providers/MailValidationProvider/IEmailValidateProvider";
+import {SpyFakeEmailValidateProvider} from "./SpyFakeEmailValidateProvider";
 
-class spyFakeEmailValidateProvider {
-    protected validateCount = 0;
-}
+export default class FakeEmailValidateProvider extends SpyFakeEmailValidateProvider implements IEmailValidateProvider{
 
-export default class fakeEmailValidateProvider extends spyFakeEmailValidateProvider implements IEmailValidateProvider{
-    validate(email: string): Promise<boolean> {
+    async validate(email: string): Promise<boolean> {
         this.validateCount++;
-        return Promise.resolve(true);
+        return true;
     }
+
 }

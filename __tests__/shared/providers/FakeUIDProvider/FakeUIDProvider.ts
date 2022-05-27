@@ -1,12 +1,11 @@
-import {IUIDProvider} from "../../../../src/shared/providers/UIDProvider/IUIDProvider";
+import {SpyFakeUIDProvider} from "./SpyFakeUIDProvider";
+import {IFakeUIDProvider} from "./IFakeUIDProvider";
 
-class spyFakeUIDProvider {
-    protected uidGenerateCount = 0;
-}
+export default class FakeUIDProvider extends SpyFakeUIDProvider implements IFakeUIDProvider{
 
-export default class fakeUIDProvider extends spyFakeUIDProvider implements IUIDProvider {
-    uidGenerate(): Promise<string> {
+    async uidGenerate(): Promise<string> {
         this.uidGenerateCount++;
-        return Promise.resolve('_UUID_');
+        return 'uuid';
     }
+
 }

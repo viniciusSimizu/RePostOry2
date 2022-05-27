@@ -1,19 +1,16 @@
-import {IEncodeProvider} from "../../../../src/shared/providers/EncodeProvider/IEncodeProvider";
+import {IFakeEncodeProvider} from "./IFakeEncodeProvider";
+import {SpyFakeEncodeProvider} from "./SpyFakeEncodeProvider";
 
-class spyFakeEncodeProvider {
-    protected decodeCount = 0;
-    protected encodeCount = 0;
-}
+export default class FakeEncodeProvider extends SpyFakeEncodeProvider implements IFakeEncodeProvider{
 
-export default class fakeEncodeProvider extends spyFakeEncodeProvider implements IEncodeProvider {
-    decode(plain: string, hashed: string): Promise<boolean> {
+    async decode(plain: string, hashed: string): Promise<boolean> {
         this.decodeCount++;
-        return Promise.resolve(false);
+        return true;
     }
 
-    encode(plain: string): Promise<string> {
+    async encode(plain: string): Promise<string> {
         this.encodeCount++;
-        return Promise.resolve(plain);
+        return plain;
     }
 
 }

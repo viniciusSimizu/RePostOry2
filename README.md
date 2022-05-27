@@ -1,18 +1,4 @@
-## Routes
-
-<ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem">
-    <h5 style="margin: 0">BaseURL: <span>http://localhost:3000/v2/repostory</span></h5>
-    <li>
-        - User
-        <ul style="list-style: none;">
-            <li>Create: /auth/register</li>
-            <li>Login: /auth/login</li>
-        </ul>
-    </li>
-    <li>
-        - Repository
-        <ul style="list-style: none;">
-            <li>Post: /repository/get</li>
-        </ul>
-    </li>
-</ul>
+## Usuário
+- [ ] Consegue se cadastrar usando a sua conta do github
+- [ ] Consegue solicitar os seus repositórios publicos
+- [ ] Consegue escolher um/vários dos seus repositórios para ser visualizado publicamente no site 
