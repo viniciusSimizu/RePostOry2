@@ -5,5 +5,5 @@ export default interface IUserRepository {
     create(data: IUserDTO): Promise<IUserDTO>;
     findByEmail(email: string): Promise<IUserDTO>;
     findById(id: string): Promise<IUserDTO>;
-    delete(id: string): Promise<UpdateResult>;
+    delete(id: string): Promise<void>;
 }

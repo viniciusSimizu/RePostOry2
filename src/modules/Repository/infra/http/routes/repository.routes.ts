@@ -5,8 +5,6 @@ import {createRepositorySchema} from "../../../schemas/createRepository.schema";
 
 const repositoryRoutes = Router();
 
-const createRepositoryController = new CreateRepositoryController();
-
 repositoryRoutes.post(
     '/get',
     [ celebrate( { [ Segments.BODY ]: createRepositorySchema }, { abortEarly: false } ) ],
