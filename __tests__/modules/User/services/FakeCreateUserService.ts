@@ -15,10 +15,10 @@ type FakeCreateUserRequest = {
 export default class FakeCreateUserService {
 
     constructor(
-        public fakeCreateUserRepository: IFakeUserCreateRepository,
-        public fakeEncodeProvider: IFakeEncodeProvider,
-        public fakeEmailValidateProvider: IFakeEmailValidateProvider,
-        public fakeUIDProvider: IFakeUIDProvider,
+        public readonly fakeCreateUserRepository: IFakeUserCreateRepository,
+        public readonly fakeEncodeProvider: IFakeEncodeProvider,
+        public readonly fakeEmailValidateProvider: IFakeEmailValidateProvider,
+        public readonly fakeUIDProvider: IFakeUIDProvider,
     ) {}
 
     async execute(data: FakeCreateUserRequest): Promise<void> {
