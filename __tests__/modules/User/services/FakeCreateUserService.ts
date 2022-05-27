@@ -25,15 +25,19 @@ export default class FakeCreateUserService {
 
         const { username, email, password, avatar_url } = data;
 
-        if (username.length === 0) {
-            throw new Error ('Nome inválido');
+        if (!email) {
+            throw new Error('Email não preenchido')
         }
 
         if (!await this.fakeEmailValidateProvider.validate(email)) {
             throw new Error('Email inválido');
         }
 
-        this.fakeCreateUserRepository.create({
+        if (!username) {
+            throw new Error('Nome não preenchido');
+        }
+
+        await this.fakeCreateUserRepository.create({
             id: await this.fakeUIDProvider.uidGenerate(),
             username,
             email,

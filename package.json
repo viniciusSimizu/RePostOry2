@@ -5,6 +5,10 @@
     "show:migration": "ts-node-dev node_modules/typeorm/cli.js migration:show -d src/shared/infra/typeorm",
     "test": "jest"
   },
+  "_moduleAliases": {
+    "@shared": "dist/shared",
+    "@config": "dist/config"
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
@@ -66,6 +70,7 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.7",

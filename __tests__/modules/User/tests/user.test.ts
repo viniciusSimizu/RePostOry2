@@ -12,10 +12,9 @@ type FakeCreateUserRequest = {
     avatar_url?: string | null | undefined | any;
 }
 
-let db: FakeUserDTO[] = [];
+let db: FakeUserDTO[];
 
-const makeSut = async (userData: FakeCreateUserRequest): Promise<FakeCreateUserService> => {
-    const user: FakeCreateUserRequest = userData;
+const makeSut = (): FakeCreateUserService => {
 
     const fakeUserCreateRepository = new FakeUserCreateRepository(db);
     const fakeEncodeProvider = new FakeEncodeProvider();
@@ -29,12 +28,15 @@ const makeSut = async (userData: FakeCreateUserRequest): Promise<FakeCreateUserS
         fakeUIDProvider,
     );
 
-    await userService.execute(user);
-
     return userService;
 }
 
 describe('User Tests', () => {
+
+    beforeEach(() => {
+        db = []
+    })
+
 
     // Should success
     it('should create a user on DB', async () => {
@@ -46,7 +48,9 @@ describe('User Tests', () => {
             avatar_url: ''
         }
 
-        const sut = await makeSut(user)
+        const sut = makeSut()
+
+        await sut.execute(user);
 
         expect(sut.fakeEmailValidateProvider.validateCount)
             .toBe(1)
@@ -65,10 +69,63 @@ describe('User Tests', () => {
 
     })
 
+    it('should not create a repeated user', () => {
 
+        const user: FakeCreateUserRequest = {
+            username: 'teste',
+            email: 'teste@teste.com',
+            password: 'admin123',
+        }
 
-    afterEach(() => {
-        db = []
-    })
+        db.push({
+            id: '',
+            username: 'teste',
+            email: '',
+            password: '',
+        })
+
+        const sut = makeSut();
+
+        const promise = sut.execute;
+
+        expect(promise(user))
+            .rejects
+            .toThrowError()
+
+    });
+
+    it('should not create a user without email', () => {
+
+        const user: FakeCreateUserRequest = {
+            username: 'teste',
+            email: '',
+            password: 'admin123',
+        }
+
+        const sut = makeSut();
+
+        const promise = sut.execute;
+
+        expect(promise(user))
+            .rejects
+            .toThrowError()
+    });
+
+    it('should not create a user without username', () => {
+
+        const user: FakeCreateUserRequest = {
+            username: '',
+            email: 'teste@teste.com',
+            password: 'admin123',
+        }
+
+        const sut = makeSut();
+
+        const promise = sut.execute;
+
+        expect(promise(user))
+            .rejects
+            .toThrowError()
+    });
 
 })
