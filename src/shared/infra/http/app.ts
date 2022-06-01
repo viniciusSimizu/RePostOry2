@@ -4,7 +4,9 @@ import mainRouter from "./routes";
 import api from "../../../config/cfg_api";
 import '../../container';
 
-initializeDatabase();
+initializeDatabase()
+    .then(() => console.log("Data Source has been initialized!"))
+    .catch(err => console.error("Error during Data Source initialization", err));
 
 const app = express();
 const cfg_api = api();

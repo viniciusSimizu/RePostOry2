@@ -13,6 +13,7 @@ const dataSource = new DataSource({
     username: cfg_database.DB_USERNAME,
     password: cfg_database.DB_PASSWORD,
     database: cfg_database.DB_REFERENCE,
+    dropSchema: cfg_database.DB_DROPSCHEMA,
     synchronize: false,
     logger: 'file',
     entities: [
@@ -30,14 +31,10 @@ const dataSource = new DataSource({
     ]
 });
 
-export async function initializeDatabase(): Promise<void> {
+export const initializeDatabase = async (): Promise<void> => {
+
     await dataSource.initialize()
-        .then(() => {
-            console.log("Data Source has been initialized!")
-        })
-        .catch(err => {
-            console.error("Error during Data Source initialization", err)
-        })
+
 };
 
 export default dataSource;
